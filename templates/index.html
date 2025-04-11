@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BritneySparkle AI ✨🎤</title>
+    <style>
+        /* Britney-inspired girly design */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;500;700&display=swap');
+        
+        :root {
+            --pink-light: #FFD1DC;
+            --pink-medium: #FF69B4;
+            --pink-dark: #FF1493;
+            --purple-light: #E6E6FA;
+            --purple-medium: #DDA0DD;
+            --purple-dark: #9370DB;
+            --gold: #FFD700;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--pink-light) 0%, var(--purple-light) 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: relative;
+        }
+        
+        /* Header styling */
+        .header {
+            background: linear-gradient(90deg, var(--pink-medium) 0%, var(--purple-medium) 100%);
+            padding: 15px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><text x="5" y="14" font-family="Arial" font-size="14" fill="rgba(255,255,255,0.2)">✨</text></svg>') repeat;
+            opacity: 0.5;
+        }
+        
+        .header h1 {
+            font-family: 'Pacifico', cursive;
+            margin: 0;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            position: relative;
+        }
+        
+        /* Messages area */
+        .chat-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><text x="30" y="30" font-family="Arial" font-size="20" fill="rgba(0,0,0,0.03)">✨</text><text x="70" y="70" font-family="Arial" font-size="15" fill="rgba(0,0,0,0.03)">💖</text></svg>');
+            scroll-behavior: smooth;
+        }
+
+        /* Message bubbles */
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            clear: both;
+            overflow-wrap: break-word;
+        }
+        
+        .user-message {
+            background-color: #e6e6e6;
+            color: #333;
+            border-radius: 18px 18px 0 18px;
+            padding: 12px 18px;
+            float: right;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .bot-message {
+            background: linear-gradient(135deg, var(--pink-medium) 0%, var(--purple-medium) 100%);
+            color: white;
+            border-radius: 18px 18px 18px 0;
+            padding: 12px 18px;
+            float: left;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            position: relative;
+            animation: sparkle 1.5s ease-in-out;
+        }
+        
+        /* Sparkle animation */
+        @keyframes sparkle {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Input area */
+        .input-area {
+            display: flex;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--purple-light) 0%, var(--pink-light) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .input-area input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            outline: none;
+        }
+        
+        .input-area button {
+            background: linear-gradient(135deg, var(--pink-dark) 0%, var(--purple-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .input-area button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--purple-dark) 0%, var(--pink-dark) 100%);
+        }
+        
+        /* Britney-themed decorations */
+        .decoration {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        
+        .microphone {
+            top: 30%;
+            left: 5%;
+            font-size: 3rem;
+        }
+        
+        .crown {
+            top: 10%;
+            right: 10%;
+            font-size: 2.5rem;
+        }
+        
+        .stars1 {
+            bottom: 15%;
+            right: 7%;
+            font-size: 4rem;
+        }
+        
+        .stars2 {
+            top: 60%;
+            left: 8%;
+            font-size: 2.5rem;
+        }
+        
+        /* Loading animation when waiting for response */
+        .loading {
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            visibility: hidden;
+        }
+        
+        .loading.visible {
+            visibility: visible;
+        }
+        
+        .loading span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+            margin: 0 2px;
+        }
+        
+        .loading span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+        
+        .loading span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+        
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Glitter effect on hover */
+        .bot-message::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, transparent 20%, var(--gold) 40%, transparent 60%, var(--gold) 80%, transparent 100%);
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+            animation: rotate 3s linear infinite;
+        }
+        
+        .bot-message:hover::after {
+            opacity: 0.4;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Clear float */
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Decorative elements -->
+        <div class="decoration microphone">🎤</div>
+        <div class="decoration crown">👑</div>
+        <div class="decoration stars1">✨</div>
+        <div class="decoration stars2">💫</div>
+        
+        <!-- Chat header -->
+        <div class="header">
+            <h1>BritneySparkle AI ✨🎤</h1>
+        </div>
+        
+        <!-- Chat messages will appear here -->
+        <div class="chat-area" id="chatArea">
+            <!-- Welcome message -->
+            <div class="message bot-message clearfix">
+                ✨ 💖 💕 Welcome to BritneySparkle AI! Ask me anything and I'll respond with Britney's iconic words! ⭐ 🎶 💋
+            </div>
+        </div>
+        
+        <!-- Input area for user messages -->
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type your message here..." autocomplete="off">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // Wait for the DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatArea = document.getElementById('chatArea');
+            const userInput = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
+            
+            // Function to add a message to the chat
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message', isUser ? 'user-message' : 'bot-message', 'clearfix');
+                
+                if (!isUser) {
+                    // If it's a bot message, wrap it for animation timing
+                    messageDiv.innerHTML = text;
+                } else {
+                    messageDiv.textContent = text;
+                }
+                
+                chatArea.appendChild(messageDiv);
+                
+                // Scroll to the bottom
+                chatArea.scrollTop = chatArea.scrollHeight;
+            }
+            
+            // Function to send message to server and get response
+            async function sendMessage(message) {
+                try {
+                    // Show loading indicator
+                    const loadingDiv = document.createElement('div');
+                    loadingDiv.classList.add('message', 'bot-message', 'loading', 'visible', 'clearfix');
+                    loadingDiv.innerHTML = '<span></span><span></span><span></span>';
+                    chatArea.appendChild(loadingDiv);
+                    chatArea.scrollTop = chatArea.scrollHeight;
+                    
+                    // Call the API
+                    const response = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ message: message }),
+                    });
+                    
+                    // Remove loading indicator
+                    chatArea.removeChild(loadingDiv);
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        addMessage(data.response, false);
+                    } else {
+                        console.error('Error from server');
+                        addMessage('💔 Oops! Something went wrong with my sparkly connection! Try again? 💔', false);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    addMessage('💔 Oops! Something went wrong with my sparkly connection! Try again? 💔', false);
+                }
+            }
+            
+            // Event listener for send button click
+            sendBtn.addEventListener('click', function() {
+                const message = userInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    userInput.value = '';
+                    sendMessage(message);
+                }
+            });
+            
+            // Event listener for Enter key press
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const message = userInput.value.trim();
+                    if (message) {
+                        addMessage(message, true);
+                        userInput.value = '';
+                        sendMessage(message);
+                    }
+                }
+            });
+            
+            // Focus on input when page loads
+            userInput.focus();
+        });
+    </script>
+</body>
+</html>
